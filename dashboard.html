@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzer Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1 style="text-align:center; margin-bottom: 30px;">Secure Form Analyzer Dashboard</h1>
+
+    <div id="dashboardContainer" style="width: 600px; margin: auto;">
+        <h2>Last Form Submissions</h2>
+        <table border="1" width="100%" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Test Input Name</th>
+                    <th>Submission Time</th>
+                </tr>
+            </thead>
+            <tbody id="dashboardTable">
+                <!-- JS will populate this -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Load last submission results from localStorage
+        const table = document.getElementById("dashboardTable");
+        ["loginForm", "signupForm"].forEach(formId => {
+            const data = JSON.parse(localStorage.getItem(formId + "_lastResult"));
+            if(data) {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${data.form}</td><td>${data.timestamp}</td>`;
+                table.appendChild(row);
+            }
+        });
+    </script>
+</body>
+</html>

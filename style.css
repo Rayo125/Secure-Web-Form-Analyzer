@@ -1,0 +1,199 @@
+/* ================================
+   FULLSCREEN VIDEO BACKGROUND
+================================ */
+.video-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================================
+   CONTENT ABOVE VIDEO
+================================ */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   FORMS ROW
+================================ */
+.forms-row {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap; /* makes them stack on mobile */
+}
+
+/* ================================
+   FORM STYLING (Glassmorphism)
+================================ */
+form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px) saturate(150%);
+  border-radius: 15px;
+  padding: 25px 20px;
+  width: 320px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  color: #fff;
+}
+
+form.submitted {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+form h2 {
+  margin-bottom: 15px;
+  color: #f0f0f0;
+  font-weight: 600;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+/* Reset all elements to behave properly */
+* {
+  box-sizing: border-box;
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* <--- this fixes overflow */
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+
+/* input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.7);
+} */
+
+input:focus {
+  border-color: #00d1ff;
+  box-shadow: 0 0 6px #00d1ff;
+  outline: none;
+}
+
+button {
+  margin-top: 18px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  background: linear-gradient(135deg, #00d1ff, #0077cc);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #00b0e6, #005fa3);
+  transform: scale(1.05);
+}
+
+/* ================================
+   ALERTS
+================================ */
+.alert {
+  padding: 12px 15px;
+  margin-top: 14px;
+  border-left: 4px solid red;
+  background: #ffe5e5;
+  color: #a10000;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideIn 0.5s forwards;
+  border-radius: 6px;
+}
+
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.severity-low { background: #e0f7e0; border-left-color: #28a745; }
+.severity-medium { background: #fff3cd; border-left-color: #ffc107; }
+.severity-high { background: #f8d7da; border-left-color: #dc3545; }
+
+/* ================================
+   ALERT CARDS
+================================ */
+.alert-card {
+  background: rgba(255,255,255,0.95);
+  color: #111;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  margin-bottom: 12px;
+}
+
+.alert-card[data-severity="high"] { border-left: 6px solid #d32f2f; }
+.alert-card[data-severity="medium"] { border-left: 6px solid #ff8f00; }
+.alert-card[data-severity="low"] { border-left: 6px solid #1976d2; }
+
+.alert-header { font-size: 14px; margin-bottom: 6px; font-weight: bold; }
+.alert-summary { font-size: 13px; margin-bottom: 8px; opacity: 0.9; }
+.alert-more {
+  background: transparent;
+  border: none;
+  color: #0077cc;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.alert-details {
+  font-size: 13px;
+  color: #222;
+  margin-top: 8px;
+  text-align: left;
+}
+.alert-details ul { margin: 6px 0 8px 18px; }
+.alert-details ul li { margin-bottom: 4px; }
+.alert-details ul li strong { font-weight: bold; }
